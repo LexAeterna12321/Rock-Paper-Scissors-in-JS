@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&amp;subset=latin-ext" rel="stylesheet">
+
+    <title>Rock||Paper||Scissors</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Rock || Paper || Scissors - The Game</h1>
+
+    <div class="select">
+
+        <h3>Select Your Hand:</h3>
+
+        <img data-option="paper" class="first" src="paper.jpg" alt="" title="Paper">
+
+        <img data-option="rock" src="rock.jpg" alt="" title="Rock">
+
+        <img data-option="scissors" src="scissors.jpg" alt="" title="Scissors">
+
+    </div>
+
+    <button class="start">Let's play!</button>
+
+    <div class="panel-left">
+        <h3>Round Summary</h3>
+        <p>Your Choice: <span data-summary="your-choice"></span></p>
+        <p>Computer Choice: <span data-summary="ai-choice"></span></p>
+        <h2>Winner: <span data-summary="who-win"></span></h2>
+    </div>
+
+    <div class="panel-right">
+        <h3>Game Summary</h3>
+        <p class="numbers">Games: <span>0</span></p>
+        <p class="wins">Wins: <span>0</span></p>
+        <p class="losses">Loses: <span>0</span></p>
+        <p class="draws">Draws: <span>0</span></p>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
