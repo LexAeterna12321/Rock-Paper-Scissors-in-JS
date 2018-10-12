@@ -10,7 +10,9 @@ const gameSummary = {
     losses: 0,
     draws: 0,
 }
+
 // Player Choice
+
 const handPick = function () {
     game.playerChoice = this.dataset.option;
     hands.forEach(hand => hand.style.boxShadow = "")
@@ -20,12 +22,16 @@ const handPick = function () {
 hands.forEach(hand => {
     hand.addEventListener("click", handPick);
 })
+
 // AI Choice
+
 const aiChoice = () => {
     const aiHand = hands[Math.floor(Math.random() * hands.length)].dataset.option;
     return aiHand;
 }
+
 // Result Check
+
 const resultCheck = (player, ai) => {
     if (player === ai) {
         return "draw";
@@ -40,15 +46,41 @@ const resultCheck = (player, ai) => {
     }
 }
 
+// Game Result Publisher
+
+const gamePublish = (player, ai, result) => {
+    document.querySelector("[data-summary=your-choice]").textContent = player;
+    document.querySelector("[data-summary=ai-choice]").textContent = ai;
+    document.querySelector("[data-summary=who-win]").textContent = result;
+
+    document.querySelector(".numbers span").textContent = ++gameSummary.games;
+    if (result === "win") {
+        document.querySelector(".wins span").textContent = ++gameSummary.wins;
+    } else if (result === "loss") {
+        document.querySelector(".losses span").textContent = ++gameSummary.losses;
+    } else {
+        document.querySelector(".draws span").textContent = ++gameSummary.draws;
+    }
+}
+
+// game Reset
+
+const gameReset = () => {
+    document.querySelector(`[data-option="${game.playerChoice}"]`).style.boxShadow = "";
+    game.playerChoice = "";
+}
+
 // Game Init
 const gameInit = function () {
+
     if (!game.playerChoice) {
-        alert("Chose your hand, please")
+        return alert("Chose your hand, please");
     }
+
     game.aiChoice = aiChoice();
     const gameResult = resultCheck(game.playerChoice, game.aiChoice);
-
-    document.querySelector("h2 span").innerHTML = gameResult;
+    gamePublish(game.playerChoice, game.aiChoice, gameResult);
+    gameReset();
 }
 
 document.querySelector(".start").addEventListener("click", gameInit);
